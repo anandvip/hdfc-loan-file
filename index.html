@@ -7,9 +7,13 @@
     <style>
         :root {
             --primary-color: #4CAF50;
-            --secondary-color: #45a049;
-            --background-color: #f4f4f4;
-            --text-color: #333;
+            --background-color: #ffffff;
+            --text-color: #333333;
+        }
+        .dark-mode {
+            --primary-color: #45a049;
+            --background-color: #333333;
+            --text-color: #ffffff;
         }
         body, html {
             margin: 0;
@@ -17,6 +21,7 @@
             font-family: Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
+            background-color: var(--background-color);
         }
         .container {
             display: flex;
@@ -26,15 +31,15 @@
             background-color: var(--background-color);
             width: 250px;
             padding: 20px;
-            transition: transform 0.3s ease-out;
-        }
-        aside.collapsed {
-            transform: translateX(-230px);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid var(--text-color);
         }
         main {
             flex: 1;
             padding: 20px;
-            transition: margin-left 0.3s ease-out;
         }
         h1, h2, h3 {
             color: var(--primary-color);
@@ -52,42 +57,38 @@
         }
         .toggle-btn {
             background-color: var(--primary-color);
-            color: white;
+            color: var(--background-color);
             border: none;
             padding: 10px;
             cursor: pointer;
             position: fixed;
-            left: 250px;
-            top: 10px;
-            transition: left 0.3s ease-out;
-        }
-        .toggle-btn.collapsed {
-            left: 20px;
+            right: 20px;
+            top: 20px;
         }
         .section {
             margin-bottom: 30px;
         }
         .highlight {
-            background-color: #e6ffe6;
+            background-color: rgba(76, 175, 80, 0.1);
             padding: 15px;
             border-radius: 5px;
             margin: 10px 0;
         }
         @media (max-width: 768px) {
-            aside {
-                position: fixed;
-                height: 100%;
-                z-index: 1;
+            .container {
+                flex-direction: column;
             }
-            main {
-                margin-left: 0;
+            aside {
+                width: 100%;
+                height: auto;
+                position: static;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <aside id="sidebar">
+        <aside>
             <nav>
                 <h2>Navigation</h2>
                 <ul>
@@ -103,15 +104,16 @@
             </nav>
         </aside>
 
-        <main id="main-content">
-            <button id="toggle-nav" class="toggle-btn">☰</button>
+        <main>
+            <button id="toggle-mode" class="toggle-btn">🌓</button>
 
             <h1>Farm Loan Increase Request - Vipul Anand</h1>
 
             <section id="introduction" class="section">
                 <h2>Introduction</h2>
                 <p>Dear Kartik and Mr. Jagjit (Branch Manager, HDFC Bank, Railway Road, Kurukshetra),</p>
-                <p>I hope this proposal finds you well. I'm writing to formally request an increase in my farm loan limit to support the implementation of innovative agricultural technologies.</p>
+                <p>I hope this proposal finds you well. Kartik, thank you for your Rakhi wishes, and I apologize for any misunderstanding that may have occurred with my wife. I appreciate the updated information on land loans and insurance clauses you've provided.</p>
+                <p>This document outlines my request for an increase in my farm loan limit, detailing the justification, planned use, and potential benefits for both parties.</p>
             </section>
 
             <section id="current-situation" class="section">
@@ -130,11 +132,21 @@
             <section id="justification" class="section">
                 <h2>Justification for Loan Increase</h2>
                 <ol>
-                    <li><strong>Significant Undervaluation:</strong> The current bank valuation is only 3% of the actual market value, providing a substantial safety margin.</li>
-                    <li><strong>Massive Collateral Coverage:</strong> The mortgaged land's market value (₹32,500,000) provides 16 times coverage for the requested loan amount.</li>
-                    <li><strong>Low Loan-to-Value (LTV) Ratio:</strong> The proposed LTV of 6.15% is far below typical agricultural loan ratios of 50-85%.</li>
-                    <li><strong>Risk Mitigation:</strong> The large gap between loan amount and collateral value offers exceptional protection against market fluctuations.</li>
-                    <li><strong>Economic Opportunity:</strong> The increased loan will enable substantial investments in farm productivity, potentially leading to increased yields and profitability.</li>
+                    <li><strong>Significant Undervaluation:</strong> The current bank valuation (₹200,000 per acre) is only about 3% of the actual market value (₹6,500,000 per acre). Even the proposed valuation (₹400,000 per acre) is just 6.15% of the market value. This extremely conservative valuation provides an enormous safety margin for the bank.</li>
+                    <li><strong>Massive Collateral Coverage:</strong> The 5 acres currently mortgaged have a market value of ₹32,500,000 (5 * ₹6,500,000). This provides more than 16 times coverage for the requested loan amount of ₹2,000,000, significantly reducing the bank's risk.</li>
+                    <li><strong>Low Loan-to-Value (LTV) Ratio:</strong> Even with the increased loan amount, the LTV ratio would be extremely low:
+                        <ul>
+                            <li>Current LTV: 1,000,000 / 32,500,000 = 3.08%</li>
+                            <li>Proposed LTV: 2,000,000 / 32,500,000 = 6.15%</li>
+                        </ul>
+                        This is far below typical agricultural loan LTV ratios, which often range from 50% to 85%.</li>
+                    <li><strong>Risk Mitigation:</strong> The enormous gap between the loan amount and the collateral value provides an exceptional buffer against any potential market fluctuations or devaluations.</li>
+                    <li><strong>Underutilized Asset:</strong> The current loan limit is severely restricting your ability to leverage your land's true value for productive purposes. Increasing the limit will allow for better utilization of this valuable asset.</li>
+                    <li><strong>Competitive Considerations:</strong> The current valuation puts you at a significant disadvantage compared to market rates. Other financial institutions might offer loan amounts much closer to the actual land value, potentially leading to loss of business for the bank.</li>
+                    <li><strong>Economic Opportunity:</strong> A higher loan amount will enable substantial investments in farm productivity, potentially leading to increased yields and profitability, which improves loan repayment capacity.</li>
+                    <li><strong>Bank's Benefit:</strong> Increasing the loan amount on such a well-secured asset could provide the bank with higher interest income at very low risk.</li>
+                    <li><strong>Future Relationship:</strong> Approving this increase demonstrates the bank's support for your business, strengthening your relationship and potentially leading to more business opportunities in the future.</li>
+                    <li><strong>Gradual Approach:</strong> The proposed doubling of the loan amount is still very conservative given the actual land value. This could be presented as a prudent first step, with the possibility of further increases in the future based on performance.</li>
                 </ol>
             </section>
 
@@ -146,36 +158,52 @@
                     <li>Polyhouse farming structures</li>
                     <li>Advanced fertigation systems</li>
                 </ul>
-                <p>These technologies are expected to significantly improve yield and resource efficiency. The estimated setup cost is approximately ₹50,000-70,000 per kanal.</p>
+                <p>These technologies, often implemented through Indo-Israel Centers of Excellence, are known to significantly improve yield and resource efficiency. The estimated cost for setting up a polyhouse with irrigation and fertigation systems is approximately ₹50,000-70,000 per kanal.</p>
+                <p>For more information on Indo-Israel collaboration in agriculture, please visit: <a href="https://thewaterdigest.com/indo-israel-collaboration-paves-the-way-for-smart-agricultural-revolution-in-india/" target="_blank">The Water Digest - Indo-Israel Collaboration</a></p>
             </section>
 
             <section id="vision-goals" class="section">
                 <h2>Vision and Goals</h2>
-                <p>My initiative aims to create sustainable alternatives to traditional farming methods. Key aspects include:</p>
+                <p>My initiative aims to create sustainable alternatives to traditional paddy and wheat farming. While success is not guaranteed, I am committed to identifying weak links in the process and finding root cause solutions. My intention is to become a knowledge resource for other farmers in the region, promoting sustainable alternative models.</p>
+                <p>Key aspects of my vision include:</p>
                 <ul>
-                    <li>Crop diversification</li>
+                    <li>Diversification of crops</li>
                     <li>Implementation of water-efficient technologies</li>
                     <li>Promotion of sustainable farming practices</li>
                     <li>Creating a model farm for education and inspiration</li>
                 </ul>
+                <p>I am deeply concerned about ensuring a sustainable path for future generations in agriculture.</p>
             </section>
 
             <section id="insurance" class="section">
                 <h2>Insurance Considerations</h2>
-                <p>I'm interested in comprehensive coverage for vegetable crops typically covered in Haryana, including tomatoes, eggplants, cabbage, cauliflower, and others. I would appreciate guidance on suitable insurance options for these planned activities.</p>
+                <p>I understand that HDFC Bank works with various insurance providers for crop coverage. Based on my research, the following vegetable crops are typically covered under crop insurance schemes in Haryana:</p>
+                <ul>
+                    <li>Tomato (Kharif, Rabi)</li>
+                    <li>Brinjal (Eggplant) (Kharif, Rabi)</li>
+                    <li>Cabbage (Rabi, Summer)</li>
+                    <li>Cauliflower (Rabi, Summer)</li>
+                    <li>Okra (Ladyfinger) (Kharif, Summer)</li>
+                    <li>Potato (Rabi)</li>
+                    <li>Onion (Kharif, Rabi)</li>
+                    <li>Green Chili (Kharif, Rabi)</li>
+                    <li>Carrot (Rabi)</li>
+                    <li>Spinach (Rabi, Summer)</li>
+                </ul>
+                <p>I would appreciate guidance on the most suitable insurance options for my planned farming activities, particularly comprehensive coverage for these vegetable crops.</p>
             </section>
 
             <section id="relationship" class="section">
                 <h2>Bank Relationship</h2>
-                <p>Our relationship dates back to 2005 in Bengaluru. This long-standing association demonstrates our mutual trust and commitment. I believe this loan increase will further strengthen our partnership.</p>
+                <p>Our relationship dates back to 2005 in Bengaluru (then Bangalore). This long-standing association and its renewal demonstrate our mutual trust and commitment. I value this relationship and believe that this loan increase will further strengthen our partnership.</p>
             </section>
 
             <section id="conclusion" class="section">
                 <h2>Conclusion</h2>
-                <p>This loan increase represents a low-risk opportunity to support innovative and sustainable farming practices. I'm prepared to provide any additional documentation or projections you may require.</p>
-                <p>Thank you for your consideration. I look forward to discussing this proposal further.</p>
-                <p>Sincerely,<br>
-                Vipul Anand<br>
+                <p>I believe this loan increase represents a low-risk opportunity for HDFC Bank to support innovative and sustainable farming practices. The proposed increase is well-secured and aligns with both my vision for sustainable agriculture and the bank's interest in supporting rural development.</p>
+                <p>I am prepared to provide any additional documentation or projections you may require to support this request. Thank you for your time and consideration. I look forward to discussing this proposal further and answering any questions you may have.</p>
+                <p>Sincerely,</p>
+                <p>Vipul Anand<br>
                 Engineer & Farmer<br>
                 va.vipulanand.space</p>
             </section>
@@ -183,14 +211,11 @@
     </div>
 
     <script>
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('main-content');
-        const toggleBtn = document.getElementById('toggle-nav');
+        const toggleBtn = document.getElementById('toggle-mode');
+        const body = document.body;
 
         toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-            mainContent.classList.toggle('expanded');
-            toggleBtn.classList.toggle('collapsed');
+            body.classList.toggle('dark-mode');
         });
 
         // Smooth scrolling for anchor links
@@ -200,11 +225,6 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
-                // Close sidebar on mobile after clicking a link
-                if (window.innerWidth <= 768) {
-                    sidebar.classList.add('collapsed');
-                    toggleBtn.classList.add('collapsed');
-                }
             });
         });
     </script>
